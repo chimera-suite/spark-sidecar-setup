@@ -12,8 +12,15 @@ check SPARK_MASTER $SPARK_MASTER
 
 echo "Done!"
 
-echo "Checking /init folder..."
-echo "Found ${ls /etc | wc -l} files."
+echo "Searching sql files in /init folder..."
+
+number_of_files=$(ls /init/*.sql | wc -l)
+echo "Found ${number_of_files} files."
+for file in /init/*.sql
+do
+	echo "Found file ${file}"
+done
+
 echo "Waiting for Spark..."
 
 set -e
@@ -22,11 +29,12 @@ set -e
 
 echo "Spark is ready!"
 
-for file in /init/*
+for file in /init/*.sql
 do
-  /spark/bin/spark-sql \
-	--name SPARKSQL-INSERTIONS \
-	--master "spark://$SPARK_MASTER" \
-	--deploy-mode client  \
-	-f "$file"
+	echo "Executing file ${file}"
+  	/spark/bin/spark-sql \
+		--name SPARKSQL-INSERTIONS \
+		--master "spark://$SPARK_MASTER" \
+		--deploy-mode client  \
+		-f "$file"
 done
