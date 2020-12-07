@@ -33,7 +33,7 @@ for file in /init/*.sql
 do
 	echo "Executing file ${file}"
   	/spark/bin/spark-sql \
-		--name SPARKSQL-INSERTIONS \
+		--name "chimera:spark-sidecar-setup - file ${file}" \
 		--master "spark://$SPARK_MASTER" \
 		--deploy-mode client  \
 		-f "$file"
