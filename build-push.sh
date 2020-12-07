@@ -47,6 +47,6 @@ echo "${password}" | docker login --username "${username}" --password-stdin
 for SPARK_VERSION in ${SPARK_VERSIONS[@]}; do
     echo "Build with tag ${SPARK_VERSION}"
     docker build --build-arg "SPARK_VERSION=${SPARK_VERSION}" \
-        -t "chimerasuite/sparksql:${SPARK_VERSION}" . 
-    docker push "chimerasuite/sparksql:${SPARK_VERSION}"
+        -t "chimerasuite/spark-sidecar-setup:${SPARK_VERSION}" . 
+    docker push "chimerasuite/spark-sidecar-setup:${SPARK_VERSION}"
 done
