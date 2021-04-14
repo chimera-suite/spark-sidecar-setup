@@ -35,6 +35,8 @@ SPARK_VERSIONS=(
     "2.4.5-hadoop2.7"
     "3.0.0-hadoop3.2"
     "3.0.1-hadoop3.2"
+    "3.0.2-hadoop3.2"
+    "3.1.1-hadoop3.2"
 )
 
 echo "Enter you dockerhub credentials"
